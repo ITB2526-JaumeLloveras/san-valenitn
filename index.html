@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Una pregunta importante... 💕</title>
+</head>
+<body>
+    <!-- Pantalla 1: Pregunta inicial -->
+    <div id="screen1" class="screen active">
+        <div class="content">
+            <h1 class="fade-in">Hola bebeeee👋</h1>
+            <p class="fade-in delay-1">Tengo algo importante que preguntarte...</p>
+            <button class="btn primary-btn fade-in delay-2" onclick="nextScreen(2)">
+                Continuar 💕
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla 2: Gif cute -->
+    <div id="screen2" class="screen">
+        <div class="content">
+            <div class="gif-container fade-in">
+                <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="cute bear" class="cute-gif">
+            </div>
+            <h2 class="fade-in delay-1">Antes de preguntarte...</h2>
+            <p class="fade-in delay-2">❤️❤️Quiero que sepas que eres muy especial para mí y que te quiero muchooo❤️❤️</p>
+            <button class="btn primary-btn fade-in delay-3" onclick="nextScreen(3)">
+                Siguiente😊
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla 3: La pregunta -->
+    <div id="screen3" class="screen">
+        <div class="content">
+            <div class="gif-container fade-in">
+                <img src="https://media.tenor.com/LWALbByStmwAAAAi/milk-and-mocha-bear-couple.gif" alt="couple bears" class="cute-gif">
+            </div>
+            <h2 class="big-question fade-in delay-1">💝¿Quieres ser mi San Valentín?💝</h2>
+            <p class="subtitle fade-in delay-2">Eres la única persona con quien quiero pasar este día</p>
+            
+            <div class="buttons-container fade-in delay-3">
+                <button id="yesBtn" class="btn yes-btn" onclick="showYesScreen()">
+                    SÍ😍
+                </button>
+                <button id="noBtn" class="btn no-btn" onclick="showPasswordModal()">
+                    NO☝️🤓
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de contraseña -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>NO PUEDES😁</h2>
+                <p class="modal-subtitle">Adivina la contrasenya y me lo pienso</p>
+            </div>
+            
+            <div id="passwordSection" class="password-section">
+                <p class="password-hint">Introduce el numero</p>
+                <input type="number" id="passwordInput" placeholder="?????" maxlength="6" class="password-input">
+                <p id="errorMessage" class="error-message"></p>
+                
+                <div class="modal-buttons">
+                    <button id="submitPassword" class="btn modal-btn primary">
+                        Verificar🔍
+                    </button>
+                    <button id="cancelPassword" class="btn modal-btn secondary">
+                        Mejor no💕💕
+                    </button>
+                </div>
+            </div>
+
+            <div id="timerSection" class="timer-section" style="display: none;">
+                <p class="lock-message">Perdiste la oportunidad🤗 Te tocara aguantarme💋💋</p>
+                <p class="lock-subtitle">Te dejo otra opcion en😉:</p>
+                
+                <div class="timer-display">
+                    <div class="time-box">
+                        <span class="time-number" id="days">00</span>
+                        <span class="time-label">Días</span>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-box">
+                        <span class="time-number" id="hours">00</span>
+                        <span class="time-label">Horas</span>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-box">
+                        <span class="time-number" id="minutes">00</span>
+                        <span class="time-label">Min</span>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-box">
+                        <span class="time-number" id="seconds">00</span>
+                        <span class="time-label">Seg</span>
+                    </div>
+                </div>
+                
+                <button class="btn modal-btn secondary" onclick="closeModal()">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de SÍ -->
+    <div id="yesScreen" class="screen success-screen">
+        <div class="content">
+            <h1 class="celebration-title">¡LO SABÍA!❤️❤️</h1>
+            <div class="gif-container">
+                <img src="https://media.tenor.com/LWALbByStmwAAAAi/milk-and-mocha-bear-couple.gif" alt="celebration" class="celebration-gif">
+            </div>
+            <p class="success-text">💕¡Sabía que dirías que SÍ!💕</p>
+            <p class="success-subtext">🥰Vamos a pasar el mejor San Valentín juntos🥰</p>
+            
+            <div class="hearts-container">
+                <span class="floating-heart">💖</span>
+                <span class="floating-heart">💝</span>
+                <span class="floating-heart">💕</span>
+                <span class="floating-heart">💗</span>
+                <span class="floating-heart">💓</span>
+            </div>
+            
+            <p class="love-message">Te quiero mucho bebita❤️</p>
+        </div>
+    </div>
+
+    <!-- Pantalla de Cancelado -->
+    <div id="cancelScreen" class="screen cancel-screen">
+        <div class="content">
+            <div class="gif-container fade-in">
+                <img src="https://media.tenor.com/RHI-YUdKzZwAAAAi/milk-and-mocha-happy.gif" alt="happy" class="cute-gif">
+            </div>
+            <h1 class="fade-in delay-1">¡Lo sabía!😊💕</h1>
+            <p class="fade-in delay-2">Sabía que no podrías decir que no🤗🤗</p>
+            <p class="fade-in delay-3">En el fondo querías decir que SÍ💋💋</p>
+            
+            <div class="message-card fade-in delay-4">
+                <p>No hay contraseña que pueda cambiar tus sentimientos😉</p>
+            </div>
+            
+            <button class="btn yes-btn big-btn fade-in delay-5" onclick="showYesScreen()">
+                ¡SÍ QUIERO SER TU VALENTÍN! 💖
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Bloqueado -->
+    <div id="lockedScreen" class="screen locked-screen">
+        <div class="content">
+            <div class="gif-container fade-in">
+                <img src="https://media.tenor.com/wpSu4BTDzOEAAAAi/sad-cry.gif" alt="sad" class="cute-gif">
+            </div>
+            <h1 class="fade-in delay-1 error-title">No tuviste suerte❌</h1>
+            <p class="fade-in delay-2">Has sido bloqueado por 20 días 🔒</p>
+            
+            <div class="timer-container fade-in delay-3">
+                <p class="timer-title">Tiempo restante:</p>
+                <div class="timer-display">
+                    <div class="time-box">
+                        <span class="time-number" id="lockedDays">00</span>
+                        <span class="time-label">Días</span>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-box">
+                        <span class="time-number" id="lockedHours">00</span>
+                        <span class="time-label">Horas</span>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-box">
+                        <span class="time-number" id="lockedMinutes">00</span>
+                        <span class="time-label">Min</span>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-box">
+                        <span class="time-number" id="lockedSeconds">00</span>
+                        <span class="time-label">Seg</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="warning-card fade-in delay-4">
+                <p>⚠️ Solo tenías un intento</p>
+                <p>💔 ¿De verdad querías decir que no?</p>
+                <p>Tendrias que haber dicho que si desde el inicio🤗</p>
+            </div>
+            
+            <button class="btn secondary-btn fade-in delay-5" onclick="location.reload()">
+                Volver al inicio
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla de NO aceptado -->
+    <div id="noScreen" class="screen no-screen">
+        <div class="content">
+            <div class="gif-container fade-in">
+                <img src="https://media.tenor.com/KKpuIJ5getCAAAAi/sad-crying.gif" alt="crying" class="cute-gif">
+            </div>
+            <h1 class="fade-in delay-1 sad-title">¿De verdad?💔</h1>
+            <p class="fade-in delay-2">Dijiste que no... mi corazón está roto 😢</p>
+            
+            <div class="sad-card fade-in delay-3">
+                <p>😭 No puedo creerlo</p>
+                <p>💔 Pensé que éramos especiales</p>
+                <p>😢 ¿Estás segura?</p>
+            </div>
+            
+            <div class="buttons-container fade-in delay-4">
+                <button class="btn yes-btn" onclick="showYesScreen()">
+                    Espera... ¡SÍ QUIERO! 💕
+                </button>
+                <button class="btn secondary-btn" onclick="location.reload()">
+                    Volver al inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
